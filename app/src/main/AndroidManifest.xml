@@ -12,13 +12,13 @@
         android:theme="@style/Theme.BGMITournament"
         tools:targetApi="31">
         <activity
-            android:name=".ForgotPassword"
+            android:name=".Auth.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".LoginUser"
+            android:name=".Auth.LoginUser"
             android:exported="false" />
         <activity
-            android:name=".RegisterUser"
+            android:name=".Auth.RegisterUser"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +31,10 @@
             android:exported="true">
 
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

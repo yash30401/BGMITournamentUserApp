@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BGMI Tournament</string>
+    <string name="name">Name</string>
+    <string name="userEmail">Email</string>
+    <string name="userPassword">Password</string>
+    <string name="register">Register</string>
+    <string name="AlreadyHave">Already Have An Account?</string>
+    <string name="login">Login</string>
 </resources>
