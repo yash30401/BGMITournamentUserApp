@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images.Media
 import android.util.Log
+import android.widget.Toast
 import androidx.core.graphics.drawable.toDrawable
 import com.bgmi.sports.tournament.userApp.bgmitournament.R
 
 import com.bgmi.sports.tournament.userApp.bgmitournament.databinding.ActivityRegisterUserBinding
+import com.bgmi.sports.tournament.userApp.bgmitournament.model.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -22,6 +24,9 @@ class RegisterUser : AppCompatActivity() {
     private lateinit var bitmap: Bitmap
     private lateinit var auth:FirebaseAuth
     private lateinit var storageReference: StorageReference
+
+
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,22 @@ class RegisterUser : AppCompatActivity() {
             val intent=Intent(this,LoginUser::class.java)
             startActivity(intent)
         }
+
+        binding.btnRegister.setOnClickListener {
+            checkValidation()
+        }
+
+    }
+
+    private fun checkValidation() {
+        if(binding.etName.editText?.text.toString().isEmpty() || binding.etMail.editText?.text.toString().isEmpty() || binding.etPass.editText?.text.toString().isEmpty()){
+            Toast.makeText(this, "Empty Field!", Toast.LENGTH_SHORT).show()
+        }else{
+            registerUser()
+        }
+    }
+
+    private fun registerUser() {
 
     }
 
