@@ -2,6 +2,7 @@ package com.bgmi.sports.tournament.userApp.bgmitournament.Auth
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,13 +10,20 @@ import android.provider.MediaStore.Images.Media
 import android.util.Log
 import android.widget.Toast
 import androidx.core.graphics.drawable.toDrawable
+import androidx.lifecycle.ViewModelProvider
 import com.bgmi.sports.tournament.userApp.bgmitournament.R
 
 import com.bgmi.sports.tournament.userApp.bgmitournament.databinding.ActivityRegisterUserBinding
 import com.bgmi.sports.tournament.userApp.bgmitournament.model.AuthViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 class RegisterUser : AppCompatActivity() {
@@ -34,6 +42,7 @@ class RegisterUser : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
         auth=FirebaseAuth.getInstance()
         storageReference=FirebaseStorage.getInstance().getReference().child("UserImages")
@@ -62,7 +71,48 @@ class RegisterUser : AppCompatActivity() {
     }
 
     private fun registerUser() {
+        val userMail=binding.etMail.editText?.text.toString()
+        val userPass=binding.etPass.editText?.text.toString()
 
+        authViewModel.SignUp(userMail,userPass,applicationContext)
+        uploadImage()
+
+    }
+
+    private fun uploadImage() {
+        val currentUser=authViewModel.currentUser()
+
+        val baos = ByteArrayOutputStream()
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG,50,baos)
+
+        val finalImage  =   baos.toByteArray()
+
+        val filePath=storageReference.child("${currentUser}.jpg")
+
+        val uploadTask=filePath.putBytes(finalImage)
+
+        uploadTask.addOnCompleteListener(object : OnCompleteListener<UploadTask.TaskSnapshot> {
+            override fun onComplete(task: Task<UploadTask.TaskSnapshot>) {
+                filePath.downloadUrl.addOnSuccessListener {uri->
+                    updateUser(uri)
+                }
+
+            }
+
+        })
+    }
+
+    private fun updateUser(uri: Uri) {
+           val userProfileChangeRequest= UserProfileChangeRequest.Builder().setDisplayName(binding.etName.editText?.text.toString())
+               .setPhotoUri(uri)
+               .build()
+
+        auth.currentUser?.updateProfile(userProfileChangeRequest)
+        auth.signOut()
+        val intent=Intent(this,LoginUser::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun openGallery() {

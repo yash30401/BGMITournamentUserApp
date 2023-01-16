@@ -15,6 +15,7 @@ class AuthViewModel:ViewModel() {
             if(task.isSuccessful){
                 val intent= Intent(context,LoginUser::class.java)
                 context.startActivity(intent)
+
             }else{
                 Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show()
             }
