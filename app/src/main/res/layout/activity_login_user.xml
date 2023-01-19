@@ -4,6 +4,204 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor"
     tools:context=".Auth.LoginUser">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/gameIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/icon_awesome_gamepad" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etLoginMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="20dp"
+                android:hint="@string/userEmail"
+                android:textColorHint="@color/hintcolor"
+                app:boxBackgroundColor="@color/editextbg"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeColor="@color/vibrantColor"
+                app:boxStrokeWidthFocused="1dp"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etName"
+                app:startIconDrawable="@drawable/baseline_mail_24"
+                app:startIconTint="@color/hintcolor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etLoginPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:hint="@string/userPassword"
+                android:textColorHint="@color/hintcolor"
+                app:boxBackgroundColor="@color/editextbg"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeColor="@color/vibrantColor"
+                app:boxStrokeWidthFocused="1dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/hintcolor"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etMail"
+                app:startIconDrawable="@drawable/outline_lock_24"
+                app:startIconTint="@color/hintcolor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <android.widget.Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ripple_effect"
+                android:text="@string/login"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPass" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+
+                android:orientation="horizontal">
+
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/hintcolor"
+                    android:background="@color/hintcolor" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="OR"
+                    android:textColor="@color/hintcolor"/>
+
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="4dp"
+                    android:backgroundTint="@color/hintcolor"
+                    android:background="@color/hintcolor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="@string/createNewAccount"
+                    android:layout_weight="2"
+                    android:paddingEnd="4dp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/textRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="@string/register"
+                    android:layout_weight="3"
+                    android:clickable="true"
+                    android:textColor="@color/vibrantColor"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ForgetPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/forgotPassword"
+                android:layout_weight="2"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/vibrantColor"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

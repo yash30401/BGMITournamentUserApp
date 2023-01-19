@@ -6,4 +6,6 @@
     <string name="register">Register</string>
     <string name="AlreadyHave">Already Have An Account?</string>
     <string name="login">Login</string>
+    <string name="createNewAccount">Create New Account?</string>
+    <string name="forgotPassword">Forgot Password?</string>
 </resources>
