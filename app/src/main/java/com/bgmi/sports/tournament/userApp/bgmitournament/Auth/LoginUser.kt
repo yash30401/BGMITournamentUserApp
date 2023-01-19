@@ -20,7 +20,7 @@ class LoginUser : AppCompatActivity() {
         binding = ActivityLoginUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar!!.title = "LOGIN"
+
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
         binding.textRegister.setOnClickListener {

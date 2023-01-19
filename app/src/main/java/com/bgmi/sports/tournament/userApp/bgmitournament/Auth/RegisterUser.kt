@@ -38,7 +38,7 @@ class RegisterUser : AppCompatActivity() {
         binding = ActivityRegisterUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
+
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
         auth = FirebaseAuth.getInstance()

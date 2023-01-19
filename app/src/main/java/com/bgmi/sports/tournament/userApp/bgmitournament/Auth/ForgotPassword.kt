@@ -19,7 +19,7 @@ class ForgotPassword : AppCompatActivity() {
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar!!.title = "Forgot Password"
+
         authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
         binding.textlogin.setOnClickListener {
