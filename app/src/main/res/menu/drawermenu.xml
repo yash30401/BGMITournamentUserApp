@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/main" android:checkableBehavior="single">
+
+    <item android:id="@+id/profile"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Profile"/>
+
+    <item android:id="@+id/orders"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/baseline_shopping_cart_24"
+        android:title="Orders"/>
+
+
+
+    </group>
+
+    <group android:id="@+id/contact" android:checkableBehavior="single">
+
+        <item android:id="@+id/contactSubtitle" android:title="Contact &amp; About">
+        <menu>
+            <item
+                android:id="@+id/conatctUs"
+                android:icon="@drawable/baseline_email_24"
+                android:title="Contact Us" />
+
+            <item
+                android:id="@+id/aboutUs"
+                android:icon="@drawable/baseline_info_24"
+                android:title="About Us" />
+
+            </menu>
+        </item>
+    </group>
+
+    <group android:id="@+id/helpGroup" android:checkableBehavior="single">
+
+        <item android:id="@+id/helpSubtitle" android:title="Help &amp; Support">
+            <menu>
+                <item android:id="@+id/help"
+                    app:showAsAction="ifRoom"
+                    android:enabled="true"
+                    android:icon="@drawable/baseline_help_24"
+                    android:title="Help And Support"/>
+
+            </menu>
+        </item>
+    </group>
+
+</menu>

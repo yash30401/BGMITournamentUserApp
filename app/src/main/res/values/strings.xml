@@ -9,4 +9,6 @@
     <string name="createNewAccount">Create New Account?</string>
     <string name="forgotPassword">Forgot Password?</string>
     <string name="submit">Submit</string>
+    <string name="bookMatches">Book Matches</string>
+    <string name="logout">Logout</string>
 </resources>

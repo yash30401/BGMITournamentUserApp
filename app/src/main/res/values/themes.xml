@@ -1,7 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BGMITournament" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.BGMITournament" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
+
         <item name="colorPrimary">@color/buttonColor
         </item>
         <item name="colorPrimaryVariant">@color/buttonColor</item>
@@ -13,5 +14,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 </resources>
