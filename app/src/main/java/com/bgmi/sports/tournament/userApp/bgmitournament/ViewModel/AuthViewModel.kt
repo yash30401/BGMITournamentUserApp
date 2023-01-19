@@ -38,6 +38,10 @@ class AuthViewModel : ViewModel() {
     fun SignOut() {
         firebaseAuth.signOut()
     }
+    fun sendMail(email: String):Task<Void>{
+        val task    =   firebaseAuth.sendPasswordResetEmail(email)
+        return task
+    }
 
     fun currentUser() = firebaseAuth.currentUser
 }

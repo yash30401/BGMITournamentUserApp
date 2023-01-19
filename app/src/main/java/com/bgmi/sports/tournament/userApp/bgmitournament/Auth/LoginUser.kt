@@ -33,7 +33,16 @@ class LoginUser : AppCompatActivity() {
             checkValidation()
         }
 
+        binding.ForgetPass.setOnClickListener {
+            //When User ForgotPass
+
+            val intent = Intent(this@LoginUser, ForgotPassword::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
+
 
     private fun checkValidation() {
         val loginMail = binding.etLoginMail.editText?.text.toString()
