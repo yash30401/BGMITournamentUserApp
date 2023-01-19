@@ -1,5 +1,6 @@
 package com.bgmi.sports.tournament.userApp.bgmitournament.Auth
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -74,19 +75,41 @@ class RegisterUser : AppCompatActivity() {
         val userMail = binding.etMail.editText?.text.toString()
         val userPass = binding.etPass.editText?.text.toString()
 
-        authViewModel.SignUp(userMail, userPass, applicationContext)
-        uploadImage()
+
+        uploadImage(userMail, userPass, applicationContext)
 
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(userMail: String, userPass: String, applicationContext: Context) {
         val currentUser = authViewModel.currentUser()
 
         val baos = ByteArrayOutputStream()
 
-
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos)
         try {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+
+            if(bitmap!=null) {
+                authViewModel.SignUp(userMail, userPass, applicationContext)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Registration Successfull", Toast.LENGTH_SHORT)
+                                .show()
+
+                            val intent = Intent(this, LoginUser::class.java)
+                            startActivity(intent)
+
+                        } else {
+                            Toast.makeText(
+                                this,
+                                task.exception?.message.toString(),
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+            }else{
+                Toast.makeText(this, "Please Upload User Profile", Toast.LENGTH_SHORT).show()
+            }
         } catch (e: Exception) {
             Toast.makeText(this, "Please Upload User Profile", Toast.LENGTH_SHORT).show()
         }

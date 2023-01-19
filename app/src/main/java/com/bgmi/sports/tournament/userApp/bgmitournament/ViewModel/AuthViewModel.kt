@@ -6,42 +6,39 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.bgmi.sports.tournament.userApp.bgmitournament.Auth.LoginUser
 import com.bgmi.sports.tournament.userApp.bgmitournament.MainActivity
+import com.bgmi.sports.tournament.userApp.bgmitournament.repository.authRepository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthViewModel : ViewModel() {
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private val repository: authRepository
 
-    fun SignIn(email: String, password: String, context: Context):Task<AuthResult> {
-        val task=firebaseAuth.signInWithEmailAndPassword(email, password)
+    init {
+        repository = authRepository().getInstance()
+    }
+
+    fun SignIn(email: String, password: String, context: Context): Task<AuthResult> {
+        val task = repository.SignIn(email, password, context)
 
         return task
     }
 
 
-    fun SignUp(email: String, password: String, context: Context) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(context, "Registration Successfull", Toast.LENGTH_SHORT).show()
-
-                val intent = Intent(context, LoginUser::class.java)
-                context.startActivity(intent)
-
-            } else {
-                Toast.makeText(context, task.exception?.message.toString(), Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
+    fun SignUp(email: String, password: String, context: Context): Task<AuthResult> {
+        val task = repository.SignUp(email, password, context)
+        return task
     }
 
     fun SignOut() {
-        firebaseAuth.signOut()
+        repository.SignOut()
     }
-    fun sendMail(email: String):Task<Void>{
-        val task    =   firebaseAuth.sendPasswordResetEmail(email)
+
+    fun sendMail(email: String): Task<Void> {
+        val task = repository.sendMail(email)
         return task
     }
 
-    fun currentUser() = firebaseAuth.currentUser
+    fun currentUser() = repository.currentUser()
 }
