@@ -6,7 +6,10 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.bgmi.sports.tournament.userApp.bgmitournament.Auth.LoginUser
 import com.bgmi.sports.tournament.userApp.bgmitournament.Auth.RegisterUser
 import com.bgmi.sports.tournament.userApp.bgmitournament.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +38,24 @@ class MainActivity : AppCompatActivity() {
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
 
+            when(menuItem.itemId){
+                R.id.profile->{
+                    Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+                }
+                R.id.orders->{
+                    Toast.makeText(this, "Orders",Toast.LENGTH_SHORT).show()
+                }
+                R.id.conatctUs->{
+                    Toast.makeText(this, "Contact Us", Toast.LENGTH_SHORT).show()
+                }
+                R.id.aboutUs->{
+                    Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show()
+                }
+                R.id.help->{
+                    Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show()
+                }
+            }
+
             binding.drawerLayout.close()
             true
         }
@@ -46,16 +67,31 @@ class MainActivity : AppCompatActivity() {
         settingUpUserProfileInHeaderView() //setting Up UserProfile In HeaderView when user not null
 
 
-
     }
 
     private fun settingUpUserProfileInHeaderView() {
         val headerView = binding.navigationView.getHeaderView(0)
 
-        if(firebaseUser!=null){
-            val userProfilePic=headerView.findViewById<ImageView>(R.id.userProfile)
+        if (firebaseUser != null) {
+            val userProfilePic = headerView.findViewById<ImageView>(R.id.userProfile)
+            Picasso.get().load(firebaseUser.photoUrl)
+                .placeholder(getDrawable(R.drawable.user_profile)!!).into(userProfilePic)
 
-            Picasso.get().load(firebaseUser.photoUrl).placeholder(getDrawable(R.drawable.user_profile)!!).into(userProfilePic)
+            val username = headerView.findViewById<TextView>(R.id.username)
+            val useremail = headerView.findViewById<TextView>(R.id.userEmail)
+
+            username.text = firebaseUser.displayName
+            useremail.text =firebaseUser.email
+
+            val logoutbtn=headerView.findViewById<android.widget.Button>(R.id.btnLogout)
+
+            logoutbtn.setOnClickListener {
+                firebaseAuth.signOut()
+                val intent=Intent(this@MainActivity,LoginUser::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }
     }
 

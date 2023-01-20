@@ -32,9 +32,12 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginTop="20dp"
         android:textColor="@color/white"
-        android:text="Username"/>
+        android:letterSpacing="0.05"
+        android:text=""/>
 
     <TextView
         android:id="@+id/userEmail"
@@ -42,9 +45,12 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:letterSpacing="0.05"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"
-        android:text="yash30401@gmail.com"/>
+        android:text=""/>
 
     <android.widget.Button
         android:id="@+id/btnLogout"
