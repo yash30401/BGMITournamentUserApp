@@ -34,9 +34,20 @@ class Morning : Fragment(R.layout.fragment_morning) {
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(ticketViewModel::class.java)
 
         viewModel.morningallMatch.observe(viewLifecycleOwner, Observer {
+
+
+
             adapter.updateMatchList(it)
             binding.progressBar.visibility=View.GONE
+            
+            if(adapter.itemCount==0){
+                binding.noMatchesTextView.visibility=View.VISIBLE
+            }else{
+                binding.noMatchesTextView.visibility=View.GONE
+            }
         })
+
+
 
     }
 }

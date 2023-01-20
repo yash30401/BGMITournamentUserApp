@@ -33,8 +33,6 @@ class ticketsRepo {
 
                     }
 
-
-
                     morningmatchList.postValue(_matchList)
 
 
@@ -50,5 +48,31 @@ class ticketsRepo {
 
         })
 
+    }
+
+    fun loadEveningMatches(evevningMatchesList:MutableLiveData<List<matchTicketsModel>>){
+        databaseReference.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try{
+
+                    var _matchList:List<matchTicketsModel> = snapshot.child("Evening").children.map { dataSnapshot ->
+                        dataSnapshot.getValue(matchTicketsModel::class.java)!!
+
+                    }
+
+                    evevningMatchesList.postValue(_matchList)
+
+
+                }catch(e:Exception){
+                    Log.d("ERROR",e.printStackTrace().toString())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("ERROR","SomeThing Went Wrong")
+            }
+
+        })
     }
 }
