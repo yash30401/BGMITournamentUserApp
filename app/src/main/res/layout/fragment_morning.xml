@@ -8,10 +8,20 @@
     android:background="@color/bgColor"
     tools:context=".Tickets.Morning">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Morning" />
+        tools:listitem="@layout/match_layout"
+        />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/progressBar"/>
+
 
 </FrameLayout>

@@ -17,4 +17,18 @@
     <string name="eveningMatches">Evening Matches</string>
     <string name="afternoonMatches">Afternoon Matches</string>
     <string name="myOrders">My Orders</string>
+
+    <string name="uploadDate">Upload Date</string>
+    <string name="uploadTime">Upload Time</string>
+    <string name="referenceID">Reference ID</string>
+    <string name="slots">Slots</string>
+    <string name="matchCategory">Match Category</string>
+    <string name="matchDate">Match Date</string>
+    <string name="matchTime">Match Time</string>
+    <string name="roomId">Room ID</string>
+    <string name="roomPass">Room Pass</string>
+    <string name="mapName">Erangle Match</string>
+    <string name="entryPrice">ENTRY PRICE: 10</string>
+    <string name="delete">Delete</string>
+    <string name="purchase">Purchase</string>
 </resources>
