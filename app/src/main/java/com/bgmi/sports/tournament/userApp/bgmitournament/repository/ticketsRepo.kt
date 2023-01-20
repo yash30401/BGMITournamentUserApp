@@ -50,6 +50,32 @@ class ticketsRepo {
 
     }
 
+    fun loadAfternoonMatches(afternoonMatchesList:MutableLiveData<List<matchTicketsModel>>){
+        databaseReference.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try{
+
+                    var _matchList:List<matchTicketsModel> = snapshot.child("Afternoon").children.map { dataSnapshot ->
+                        dataSnapshot.getValue(matchTicketsModel::class.java)!!
+
+                    }
+
+                    afternoonMatchesList.postValue(_matchList)
+
+
+                }catch(e:Exception){
+                    Log.d("ERROR",e.printStackTrace().toString())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("ERROR","SomeThing Went Wrong")
+            }
+
+        })
+    }
+
     fun loadEveningMatches(evevningMatchesList:MutableLiveData<List<matchTicketsModel>>){
         databaseReference.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -14,14 +14,17 @@ class ticketViewModel : ViewModel() {
 
     private val _morningMatchData = MutableLiveData<List<matchTicketsModel>>()
     private val _eveningMatchData = MutableLiveData<List<matchTicketsModel>>()
+    private val _afternoonMatchData = MutableLiveData<List<matchTicketsModel>>()
 
     val morningallMatch: LiveData<List<matchTicketsModel>> = _morningMatchData
     val eveningallMatch: LiveData<List<matchTicketsModel>> = _eveningMatchData
+    val afternoonallMatch: LiveData<List<matchTicketsModel>> = _afternoonMatchData
 
     init {
         repository = ticketsRepo().getInstance()
         repository.loadMorningMatches(_morningMatchData)
         repository.loadEveningMatches(_eveningMatchData)
+        repository.loadAfternoonMatches(_afternoonMatchData)
     }
 
 
