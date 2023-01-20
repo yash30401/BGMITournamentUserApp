@@ -11,4 +11,10 @@
     <string name="submit">Submit</string>
     <string name="bookMatches">Book Matches</string>
     <string name="logout">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="morningmatches">Morning Matches</string>
+    <string name="eveningMatches">Evening Matches</string>
+    <string name="afternoonMatches">Afternoon Matches</string>
+    <string name="myOrders">My Orders</string>
 </resources>
