@@ -442,9 +442,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/roomIDANDPassLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:paddingTop="10dp">
 
                 <LinearLayout
@@ -722,7 +724,7 @@
             </LinearLayout>
 
             <android.widget.Button
-                android:id="@+id/btnDelete"
+                android:id="@+id/btnPurchase"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"

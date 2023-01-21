@@ -1,5 +1,6 @@
 package com.bgmi.sports.tournament.userApp.bgmitournament.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,13 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bgmi.sports.tournament.userApp.bgmitournament.R
 import com.bgmi.sports.tournament.userApp.bgmitournament.databinding.MatchLayoutBinding
 import com.bgmi.sports.tournament.userApp.bgmitournament.model.matchTicketsModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.channels.TickerMode
 
-class purchaseTicketAdapter:RecyclerView.Adapter<purchaseTicketAdapter.purchaseTicketViewHolder>() {
+class purchaseTicketAdapter(val purchaseTicket: purchaseTicket):RecyclerView.Adapter<purchaseTicketAdapter.purchaseTicketViewHolder>() {
 
 
     private val allMatchData=ArrayList<matchTicketsModel>()
+
+    private lateinit var query: DatabaseReference
+    private var user=FirebaseAuth.getInstance()
 
     inner class purchaseTicketViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val binding=MatchLayoutBinding.bind(itemView)
@@ -21,6 +27,10 @@ class purchaseTicketAdapter:RecyclerView.Adapter<purchaseTicketAdapter.purchaseT
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): purchaseTicketViewHolder {
         val viewHolder=purchaseTicketViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.match_layout,parent,false))
+
+        viewHolder.binding.btnPurchase.setOnClickListener {
+            purchaseTicket.purchaseticket(allMatchData[viewHolder.adapterPosition],parent.context)
+        }
 
         return viewHolder
     }
@@ -31,6 +41,23 @@ class purchaseTicketAdapter:RecyclerView.Adapter<purchaseTicketAdapter.purchaseT
 
     override fun onBindViewHolder(holder: purchaseTicketViewHolder, position: Int) {
         val matchData=allMatchData[position]
+
+        query= FirebaseDatabase.getInstance().getReference().child("Orders").child(user.uid.toString())
+
+        query.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.hasChild(matchData.refId.toString())){
+                    holder.binding.btnPurchase.visibility=View.GONE
+                }else{
+                    holder.binding.btnPurchase.visibility=View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
         holder.binding.fUploadDate.text=matchData.uploadDate.toString()
         holder.binding.fUploadTime.text=matchData.uploadTime.toString()
@@ -69,4 +96,8 @@ class purchaseTicketAdapter:RecyclerView.Adapter<purchaseTicketAdapter.purchaseT
         notifyDataSetChanged()
     }
 
+}
+
+interface purchaseTicket{
+    fun purchaseticket(ticketsModel: matchTicketsModel,context:Context)
 }
