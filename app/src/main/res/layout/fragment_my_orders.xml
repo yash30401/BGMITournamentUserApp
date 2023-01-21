@@ -8,10 +8,33 @@
     android:layout_height="match_parent"
     tools:context=".Tickets.MyOrders">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="My Orders" />
+        tools:listitem="@layout/order_layout"
+        />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/progressBar"/>
+
+    <TextView
+        android:id="@+id/noMatchesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="20dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_medium"
+        android:letterSpacing="0.07"
+        android:textColor="@color/white"
+        android:text="No Matches Found!"/>
 
 </FrameLayout>
